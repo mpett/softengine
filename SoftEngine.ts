@@ -49,7 +49,6 @@ module SoftEngine {
         public putPixel(x: number, y: number, color: BABYLON.Color4): void {
             this.backbufferdata = this.backbuffer.data;
             var index = ((x >> 0) + (y >> 0) * this.workingWidth) * 4;
-
             this.backbufferdata[index] = color.r * 255;
             this.backbufferdata[index + 1] = color.g * 255;
             this.backbufferdata[index + 2] = color.b * 255;
@@ -66,6 +65,28 @@ module SoftEngine {
         public drawPoint(point: BABYLON.Vector2): void {
             if (point.x >= 0 && point.y >=0 && point.x < this.workingWidth && point.y < this.workingHeight) {
                 this.putPixel(point.x, point.y, new BABYLON.Color4(1, 1, 0, 1));
+            }
+        }
+
+        public render(camera: Camera, meshes: Mesh[]): void {
+            var viewMatrix = BABYLON.Matrix.LookAtLH(camera.Position, camera.Target, BABYLON.Vector3.Up());
+            var projectionMatrix = BABYLON.Matrix.PerspectiveFovLH(0.78, this.workingWidth / this.workingHeight, 0.01, 1.0);
+
+            for (var index = 0; index < meshes.length; index++) {
+                var currentMesh = meshes[index];
+                var WorldMatrix = BABYLON.Matrix.RotationYawPitchRoll(
+                    currentMesh.Rotation.y, currentMesh.Rotation.x, currentMesh.Rotation.z
+                        ).multiply(BABYLON.Matrix.Translation(
+                            currentMesh.Position.x, currentMesh.Position.y, currentMesh.Position.z
+                ));
+                
+                var transformMatrix = WorldMatrix.multiply(viewMatrix).multiply(projectionMatrix);
+                for (var indexVertices = 0; indexVertices < currentMesh.Vertices.length;
+                            indexVertices++) {
+                    var projectedPoint = this.project
+                        (currentMesh.Vertices[indexVertices], transformMatrix);
+                    this.drawPoint(projectedPoint);
+                }
             }
         }
     }
