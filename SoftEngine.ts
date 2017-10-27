@@ -62,5 +62,11 @@ module SoftEngine {
             var y = -point.y * this.workingHeight + this.workingHeight / 2.0 >> 0;
             return (new BABYLON.Vector2(x, y));
         }
+
+        public drawPoint(point: BABYLON.Vector2): void {
+            if (point.x >= 0 && point.y >=0 && point.x < this.workingWidth && point.y < this.workingHeight) {
+                this.putPixel(point.x, point.y, new BABYLON.Color4(1, 1, 0, 1));
+            }
+        }
     }
 }
