@@ -14,7 +14,7 @@ var SoftEngine;
             this.name = name;
             this.Vertices = new Array(verticesCount);
             this.Rotation = BABYLON.Vector3.Zero();
-            this.Rotation = BABYLON.Vector3.Zero();
+            this.Position = BABYLON.Vector3.Zero();
         }
         return Mesh;
     }());

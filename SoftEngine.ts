@@ -18,7 +18,7 @@ module SoftEngine {
         constructor(public name: string, verticesCount: number) {
             this.Vertices = new Array(verticesCount);
             this.Rotation = BABYLON.Vector3.Zero();
-            this.Rotation = BABYLON.Vector3.Zero();
+            this.Position = BABYLON.Vector3.Zero();
         }
     }
 
@@ -48,7 +48,7 @@ module SoftEngine {
 
         public putPixel(x: number, y: number, color: BABYLON.Color4): void {
             this.backbufferdata = this.backbuffer.data;
-            var index = ((x >> 0) + (y >> 0) * this.workingWidth) * 4;
+            var index: number = ((x >> 0) + (y >> 0) * this.workingWidth) * 4;
             this.backbufferdata[index] = color.r * 255;
             this.backbufferdata[index + 1] = color.g * 255;
             this.backbufferdata[index + 2] = color.b * 255;
