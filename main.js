@@ -21,13 +21,19 @@ function init() {
     mesh.Vertices[7] = new BABYLON.Vector3(1, -1, -1);
     mera.Position = new BABYLON.Vector3(0, 0, 10);
     mera.Target = new BABYLON.Vector3(0, 0, 0);
+    // Calling the HTML5 rendering loop
     requestAnimationFrame(drawingLoop);
 }
+// Rendering loop handler
 function drawingLoop() {
     device.clear();
+    // rotating slightly the cube during each frame rendered
     mesh.Rotation.x += 0.01;
     mesh.Rotation.y += 0.01;
+    // Doing the various matrix operations
     device.render(mera, meshes);
+    // Flushing the back buffer into the front buffer
     device.present();
+    // Calling the HTML5 rendering loop recursively
     requestAnimationFrame(drawingLoop);
 }
