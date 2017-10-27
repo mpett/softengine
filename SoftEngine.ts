@@ -10,15 +10,23 @@ module SoftEngine {
         }
     }
 
+    export interface Face {
+        A: number;
+        B: number;
+        C: number;
+    }
+
     export class Mesh {
         Position: BABYLON.Vector3;
         Rotation: BABYLON.Vector3;
         Vertices: BABYLON.Vector3[];
+        Faces: Face[];
 
-        constructor(public name: string, verticesCount: number) {
+        constructor(public name: string, verticesCount: number, facesCount: number) {
             this.Vertices = new Array(verticesCount);
-            this.Rotation = BABYLON.Vector3.Zero();
-            this.Position = BABYLON.Vector3.Zero();
+            this.Faces = new Array(facesCount);
+            this.Rotation = new BABYLON.Vector3(0,0,0);
+            this.Position = new BABYLON.Vector3(0,0,0);
         }
     }
 
@@ -102,6 +110,19 @@ module SoftEngine {
                     var point0 = this.project(currentMesh.Vertices[i], transformMatrix);
                     var point1 = this.project(currentMesh.Vertices[i+1], transformMatrix);
                     this.drawLine(point0, point1);
+                }
+
+                for (var indexFaces = 0; indexFaces < currentMesh.Faces.length; indexFaces++) {
+                    var currentFace = currentMesh.Faces[indexFaces];
+                    var vertexA = currentMesh.Vertices[currentFace.A];
+                    var vertexB = currentMesh.Vertices[currentFace.B];
+                    var vertexC = currentMesh.Vertices[currentFace.C];
+                    var pixelA = this.project(vertexA, transformMatrix);
+                    var pixelB = this.project(vertexB, transformMatrix);
+                    var pixelC = this.project(vertexC, transformMatrix);
+                    this.drawLine(pixelA, pixelB);
+                    this.drawLine(pixelB, pixelC);
+                    this.drawLine(pixelC, pixelA);
                 }
             }
         }
