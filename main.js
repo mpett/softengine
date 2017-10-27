@@ -14,11 +14,11 @@ function init() {
     mesh.Vertices[0] = new BABYLON.Vector3(-1, 1, 1);
     mesh.Vertices[1] = new BABYLON.Vector3(1, 1, 1);
     mesh.Vertices[2] = new BABYLON.Vector3(-1, -1, 1);
-    mesh.Vertices[3] = new BABYLON.Vector3(-1, -1, -1);
+    mesh.Vertices[3] = new BABYLON.Vector3(1, -1, 1);
     mesh.Vertices[4] = new BABYLON.Vector3(-1, 1, -1);
     mesh.Vertices[5] = new BABYLON.Vector3(1, 1, -1);
-    mesh.Vertices[6] = new BABYLON.Vector3(1, -1, 1);
-    mesh.Vertices[7] = new BABYLON.Vector3(1, -1, -1);
+    mesh.Vertices[6] = new BABYLON.Vector3(1, -1, -1);
+    mesh.Vertices[7] = new BABYLON.Vector3(-1, -1, -1);
     mesh.Faces[0] = { A: 0, B: 1, C: 2 };
     mesh.Faces[1] = { A: 1, B: 2, C: 3 };
     mesh.Faces[2] = { A: 1, B: 3, C: 6 };
