@@ -23,8 +23,18 @@ module SoftEngine {
     }
 
     export class Device {
-        private backBuffer: ImageData;
+        private backbuffer: ImageData;
         private workingCanvas: HTMLCanvasElement;
         private workingContext: CanvasRenderingContext2D;
+        private workingWidth: number;
+        private workingHeight: number;
+        private backbufferdata;
+
+        constructor(canvas: HTMLCanvasElement) {
+            this.workingCanvas = canvas;
+            this.workingWidth = canvas.width;
+            this.workingHeight = canvas.height;
+            this.workingContext = this.workingCanvas.getContext("2d");
+        }
     }
 }
