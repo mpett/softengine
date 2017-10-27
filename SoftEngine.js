@@ -52,6 +52,15 @@ var SoftEngine;
                 this.putPixel(point.x, point.y, new BABYLON.Color4(1, 1, 0, 1));
             }
         };
+        Device.prototype.drawLine = function (point0, point1) {
+            var distance = point1.subtract(point0).length();
+            if (distance < 2)
+                return;
+            var middlePoint = point0.add((point1.subtract(point0)).scale(0.5));
+            this.drawPoint(middlePoint);
+            this.drawLine(point0, middlePoint);
+            this.drawLine(middlePoint, point1);
+        };
         Device.prototype.render = function (camera, meshes) {
             var viewMatrix = BABYLON.Matrix.LookAtLH(camera.Position, camera.Target, BABYLON.Vector3.Up());
             var projectionMatrix = BABYLON.Matrix.PerspectiveFovLH(0.78, this.workingWidth / this.workingHeight, 0.01, 1.0);
@@ -62,6 +71,11 @@ var SoftEngine;
                 for (var indexVertices = 0; indexVertices < currentMesh.Vertices.length; indexVertices++) {
                     var projectedPoint = this.project(currentMesh.Vertices[indexVertices], transformMatrix);
                     this.drawPoint(projectedPoint);
+                }
+                for (var i = 0; i < currentMesh.Vertices.length - 1; i++) {
+                    var point0 = this.project(currentMesh.Vertices[i], transformMatrix);
+                    var point1 = this.project(currentMesh.Vertices[i + 1], transformMatrix);
+                    this.drawLine(point0, point1);
                 }
             }
         };
