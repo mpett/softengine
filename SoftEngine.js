@@ -19,4 +19,14 @@ var SoftEngine;
         return Mesh;
     }());
     SoftEngine.Mesh = Mesh;
+    var Device = /** @class */ (function () {
+        function Device(canvas) {
+            this.workingCanvas = canvas;
+            this.workingWidth = canvas.width;
+            this.workingHeight = canvas.height;
+            this.workingContext = this.workingCanvas.getContext("2d");
+        }
+        return Device;
+    }());
+    SoftEngine.Device = Device;
 })(SoftEngine || (SoftEngine = {}));
