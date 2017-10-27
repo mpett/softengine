@@ -62,6 +62,33 @@ var SoftEngine;
             this.drawLine(point0, middlePoint);
             this.drawLine(middlePoint, point1);
         };
+        Device.prototype.drawBresenhamLine = function (point0, point1) {
+            var x0 = point0.x >> 0;
+            var y0 = point0.y >> 0;
+            var x1 = point1.x >> 0;
+            var y1 = point1.y >> 0;
+            var dx = Math.abs(x1 - x0);
+            var dy = Math.abs(y1 - y0);
+            var sx = (x0 < x1) ? 1 : -1;
+            var sy = (y0 < y1) ? 1 : -1;
+            var err = dx - dy;
+            while (true) {
+                this.drawPoint(new BABYLON
+                    .Vector2(x0, y0));
+                if ((x0 == x1)
+                    && (y0 == y1))
+                    break;
+                var e2 = 2 * err;
+                if (e2 > -dy) {
+                    err -= dy;
+                    x0 += sx;
+                }
+                if (e2 < dx) {
+                    err += dx;
+                    y0 += sy;
+                }
+            }
+        };
         Device.prototype.render = function (camera, meshes) {
             var viewMatrix = BABYLON.Matrix.LookAtLH(camera.Position, camera.Target, BABYLON.Vector3.Up());
             var projectionMatrix = BABYLON.Matrix.PerspectiveFovLH(0.78, this.workingWidth / this.workingHeight, 0.01, 1.0);
@@ -76,7 +103,7 @@ var SoftEngine;
                 for (var i = 0; i < currentMesh.Vertices.length - 1; i++) {
                     var point0 = this.project(currentMesh.Vertices[i], transformMatrix);
                     var point1 = this.project(currentMesh.Vertices[i + 1], transformMatrix);
-                    this.drawLine(point0, point1);
+                    this.drawBresenhamLine(point0, point1);
                 }
                 for (var indexFaces = 0; indexFaces < currentMesh.Faces.length; indexFaces++) {
                     var currentFace = currentMesh.Faces[indexFaces];
@@ -86,9 +113,9 @@ var SoftEngine;
                     var pixelA = this.project(vertexA, transformMatrix);
                     var pixelB = this.project(vertexB, transformMatrix);
                     var pixelC = this.project(vertexC, transformMatrix);
-                    this.drawLine(pixelA, pixelB);
-                    this.drawLine(pixelB, pixelC);
-                    this.drawLine(pixelC, pixelA);
+                    this.drawBresenhamLine(pixelA, pixelB);
+                    this.drawBresenhamLine(pixelB, pixelC);
+                    this.drawBresenhamLine(pixelC, pixelA);
                 }
             }
         };
