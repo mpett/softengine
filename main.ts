@@ -30,7 +30,6 @@ function init() {
     mesh.Faces[3] = { A : 1, B : 5, C : 6};
     mesh.Faces[4] = { A : 0, B : 1, C : 4};
     mesh.Faces[5] = { A : 1, B : 4, C : 5};
-
     mesh.Faces[6] = { A : 2, B : 3, C : 7};
     mesh.Faces[7] = { A : 3, B : 6, C : 7};
     mesh.Faces[8] = { A : 0, B : 2, C : 7};
