@@ -56,5 +56,11 @@ module SoftEngine {
             this.backbufferdata[index + 3] = color.a * 255;
         }
 
+        public project(coord: BABYLON.Vector3, transMat: BABYLON.Matrix): BABYLON.Vector2 {
+            var point = BABYLON.Vector3.TransformCoordinates(coord, transMat);
+            var x = point.x * this.workingWidth + this.workingWidth / 2.0 >> 0;
+            var y = -point.y * this.workingHeight + this.workingHeight / 2.0 >> 0;
+            return (new BABYLON.Vector2(x, y));
+        }
     }
 }
