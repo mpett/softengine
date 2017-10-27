@@ -36,5 +36,15 @@ module SoftEngine {
             this.workingHeight = canvas.height;
             this.workingContext = this.workingCanvas.getContext("2d");
         }
+
+        public clear(): void {
+            this.workingContext.clearRect(0, 0, this.workingWidth, this.workingHeight);
+            this.backbuffer = this.workingContext.getImageData(0, 0, this.workingWidth, this.workingHeight);
+        }
+
+        public present(): void {
+            this.workingContext.putImageData(this.backbuffer, 0, 0);
+        }
+
     }
 }
