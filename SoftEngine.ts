@@ -115,9 +115,7 @@ module SoftEngine {
                     y0 += sy;
                 }
             }
-        }
-
-        
+        }        
 
         public render(camera: Camera, meshes: Mesh[]): void {
             var viewMatrix = BABYLON.Matrix.LookAtLH(camera.Position, camera.Target, BABYLON.Vector3.Up());
