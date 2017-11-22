@@ -67,71 +67,12 @@ module SoftEngine {
             this.backbufferdata[index + 3] = color.a * 255;
         }
 
-        public project(coord: BABYLON.Vector3, 
-                transMat: BABYLON.Matrix): BABYLON.Vector2 {
-            var point = BABYLON.Vector3
-                .TransformCoordinates(coord, transMat);
-            var x = point.x * this.workingWidth 
-                    + this.workingWidth / 2.0 >> 0;
-            var y = -point.y * this.workingHeight 
-                    + this.workingHeight / 2.0 >> 0;
-            return (new BABYLON.Vector2(x, y));
+        public project(coord: BABYLON.Vector3, transMat: BABYLON.Matrix): BABYLON.Vector3 {
+            var point = BABYLON.Vector3.TransformCoordinates(coord, transMat);
+            var x = point.x * this.workingWidth + this.workingWidth / 2.0;
+            var y = -point.y * this.workingHeight + this.workingHeight / 2.0;
+            return (new BABYLON.Vector3(x, y, point.z));
         }
-
-        public drawPoint(point: BABYLON.Vector2): void {
-            if (point.x >= 0 && point.y >=0 && point.x 
-                    < this.workingWidth 
-                    && point.y < this.workingHeight) {
-                this.putPixel(point.x, point.y, 
-                        new BABYLON.Color4(1, 1, 0, 1));
-            }
-        }
-
-        public drawLine(point0: BABYLON.Vector2, 
-                point1: BABYLON.Vector2): void {
-            var distance 
-                = point1.subtract(point0).length();
-            if (distance < 2)
-                return;
-            var middlePoint 
-                = point0
-                    .add((point1.subtract(point0))
-                    .scale(0.5));
-            this.drawPoint(middlePoint);
-            this.drawLine(point0, middlePoint);
-            this.drawLine(middlePoint, point1);
-        }
-
-        public drawBresenhamLine(point0: BABYLON.Vector2, 
-            point1: BABYLON.Vector2): void {
-            var x0 = point0.x >> 0;
-            var y0 = point0.y >> 0;
-            var x1 = point1.x >> 0;
-            var y1 = point1.y >> 0;
-            var dx = Math.abs(x1 - x0);
-            var dy = Math.abs(y1 - y0);
-            var sx = (x0 < x1) ? 1 : -1;
-            var sy = (y0 < y1) ? 1 : -1;
-            var err = dx - dy;
-
-            while(true) {
-                this.drawPoint(
-                    new BABYLON
-                    .Vector2(x0, y0));
-                if ((x0 == x1) 
-                    && (y0 == y1))
-                    break;
-                var e2 = 2 * err;
-                if (e2 > -dy) {
-                    err -= dy;
-                    x0 += sx;
-                }
-                if (e2 < dx) {
-                    err += dx;
-                    y0 += sy;
-                }
-            }
-        }        
 
         public render(camera: Camera, meshes: Mesh[]): void {
             var viewMatrix = BABYLON.Matrix.LookAtLH(camera.Position, 
@@ -153,36 +94,6 @@ module SoftEngine {
                 
                 var transformMatrix = WorldMatrix.multiply(viewMatrix)
                                                     .multiply(projectionMatrix);
-                for (var indexVertices = 0; 
-                    indexVertices < currentMesh.Vertices.length;
-                            indexVertices++) {
-                    var projectedPoint = this.project
-                        (currentMesh.Vertices[indexVertices],
-                             transformMatrix);
-                    this.drawPoint(projectedPoint);
-                }
-
-                for (var i = 0; i < currentMesh.Vertices.length - 1; i++) {
-                    var point0 = this
-                        .project(currentMesh.Vertices[i], transformMatrix);
-                    var point1 = this
-                        .project(currentMesh.Vertices[i+1], transformMatrix);
-                    this.drawBresenhamLine(point0, point1);
-                }
-
-                for (var indexFaces = 0; 
-                    indexFaces < currentMesh.Faces.length; indexFaces++) {
-                    var currentFace = currentMesh.Faces[indexFaces];
-                    var vertexA = currentMesh.Vertices[currentFace.A];
-                    var vertexB = currentMesh.Vertices[currentFace.B];
-                    var vertexC = currentMesh.Vertices[currentFace.C];
-                    var pixelA = this.project(vertexA, transformMatrix);
-                    var pixelB = this.project(vertexB, transformMatrix);
-                    var pixelC = this.project(vertexC, transformMatrix);
-                    this.drawBresenhamLine(pixelA, pixelB);
-                    this.drawBresenhamLine(pixelB, pixelC);
-                    this.drawBresenhamLine(pixelC, pixelA);
-                }
             }
         }
     }
