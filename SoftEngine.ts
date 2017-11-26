@@ -175,6 +175,21 @@ module SoftEngine {
                 var transformMatrix = WorldMatrix.multiply(viewMatrix)
                                                     .multiply(projectionMatrix);
             }
+
+            for (var indexFaces = 0; indexFaces < currentMesh.Faces.length; indexFaces++) {
+                var currentFace = currentMesh.Faces[indexFaces];
+                var vertexA = currentMesh.Vertices[currentFace.A];
+                var vertexB = currentMesh.Vertices[currentFace.B];
+                var vertexC = currentMesh.Vertices[currentFace.C];
+                var pixelA = this.project(vertexA, transformMatrix);
+                var pixelB = this.project(vertexB, transformMatrix);
+                var pixelC = this.project(vertexC, transformMatrix);
+                var color: number = 0.25 + 
+                    ((indexFaces % currentMesh.Faces.length) / 
+                    currentMesh.Faces.length) * 0.75;
+                this.drawTriangle(pixelA, pixelB, pixelC, 
+                    new BABYLON.Color4(color, color, color, 1));
+            }
         }
     }
 }
