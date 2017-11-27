@@ -38,12 +38,14 @@ module SoftEngine {
         private workingWidth: number;
         private workingHeight: number;
         private backbufferdata;
+        private depthbuffer: number[];
 
         constructor(canvas: HTMLCanvasElement) {
             this.workingCanvas = canvas;
             this.workingWidth = canvas.width;
             this.workingHeight = canvas.height;
             this.workingContext = this.workingCanvas.getContext("2d");
+            this.depthbuffer = new Array(this.workingHeight * this.workingWidth);
         }
 
         public clear(): void {
@@ -51,6 +53,9 @@ module SoftEngine {
                 .clearRect(0, 0, this.workingWidth, this.workingHeight);
             this.backbuffer = this.workingContext
                 .getImageData(0, 0, this.workingWidth, this.workingHeight);
+            for (var i = 0; i < this.depthbuffer.length; i++) {
+                this.depthbuffer[i] = 10000000;
+            }
         }
 
         public present(): void {
