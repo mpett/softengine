@@ -40,13 +40,17 @@ var SoftEngine;
         Device.prototype.present = function () {
             this.workingContext.putImageData(this.backbuffer, 0, 0);
         };
-        Device.prototype.putPixel = function (x, y, color) {
+        Device.prototype.putPixel = function (x, y, z, color) {
             this.backbufferdata = this.backbuffer.data;
-            var index = ((x >> 0) + (y >> 0) * this.workingWidth) * 4;
-            this.backbufferdata[index] = color.r * 255;
-            this.backbufferdata[index + 1] = color.g * 255;
-            this.backbufferdata[index + 2] = color.b * 255;
-            this.backbufferdata[index + 3] = color.a * 255;
+            var index = ((x >> 0) + (y >> 0) * this.workingWidth);
+            var index4 = index * 4;
+            if (this.depthbuffer[index] < z)
+                return;
+            this.depthbuffer[index] = z;
+            this.backbufferdata[index4] = color.r * 255;
+            this.backbufferdata[index4 + 1] = color.g * 255;
+            this.backbufferdata[index4 + 2] = color.b * 255;
+            this.backbufferdata[index4 + 3] = color.a * 255;
         };
         Device.prototype.project = function (coord, transMat) {
             var point = BABYLON.Vector3.TransformCoordinates(coord, transMat);
@@ -57,7 +61,7 @@ var SoftEngine;
         Device.prototype.drawPoint = function (point, color) {
             if (point.x >= 0 && point.y >= 0 &&
                 point.x < this.workingWidth && point.y < this.workingHeight) {
-                this.putPixel(point.x, point.y, color);
+                this.putPixel(point.x, point.y, point.z, color);
             }
         };
         Device.prototype.clamp = function (value) {

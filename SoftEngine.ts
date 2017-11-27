@@ -62,14 +62,18 @@ module SoftEngine {
             this.workingContext.putImageData(this.backbuffer, 0, 0);
         }
 
-        public putPixel(x: number, y: number, color: BABYLON.Color4): void {
+        public putPixel(x: number, y: number, z:number, color: BABYLON.Color4): void {
             this.backbufferdata = this.backbuffer.data;
             var index: number = 
-                ((x >> 0) + (y >> 0) * this.workingWidth) * 4;
-            this.backbufferdata[index] = color.r * 255;
-            this.backbufferdata[index + 1] = color.g * 255;
-            this.backbufferdata[index + 2] = color.b * 255;
-            this.backbufferdata[index + 3] = color.a * 255;
+                ((x >> 0) + (y >> 0) * this.workingWidth);
+            var index4: number = index * 4;
+            if (this.depthbuffer[index] < z)
+                return;
+            this.depthbuffer[index] = z;
+            this.backbufferdata[index4] = color.r * 255;
+            this.backbufferdata[index4 + 1] = color.g * 255;
+            this.backbufferdata[index4 + 2] = color.b * 255;
+            this.backbufferdata[index4 + 3] = color.a * 255;
         }
 
         public project(coord: BABYLON.Vector3, transMat: BABYLON.Matrix): BABYLON.Vector3 {
@@ -79,10 +83,10 @@ module SoftEngine {
             return (new BABYLON.Vector3(x, y, point.z));
         }
 
-        public drawPoint(point: BABYLON.Vector2, color: BABYLON.Color4): void {
+        public drawPoint(point: BABYLON.Vector3, color: BABYLON.Color4): void {
             if (point.x >= 0 && point.y >= 0 && 
                 point.x < this.workingWidth && point.y < this.workingHeight) {
-                    this.putPixel(point.x, point.y, color);
+                    this.putPixel(point.x, point.y, point.z, color);
                 }
         }
 
