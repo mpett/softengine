@@ -102,13 +102,17 @@ module SoftEngine {
 
         public processScanLine(y: number, pa: BABYLON.Vector3, pb: BABYLON.Vector3,
             pc: BABYLON.Vector3, pd: BABYLON.Vector3, color: BABYLON.Color4): void {
-                var gradient1 = pa.y != pb.y ? (y - pa.y) / (pb.y - pa.y) : 1;
-                var gradient2 = pc.y != pd.y ? (y - pc.y) / (pd.y - pc.y) : 1;
-                var sx = this.interpolate(pa.x, pb.x, gradient1) >> 0;
-                var ex = this.interpolate(pc.x, pd.x, gradient2) >> 0;
-                for (var x = sx; x < ex; x++) {
-                    this.drawPoint(new BABYLON.Vector2(x, y), color);
-                }
+            var gradient1 = pa.y != pb.y ? (y - pa.y) / (pb.y - pa.y) : 1;
+            var gradient2 = pc.y != pd.y ? (y - pc.y) / (pd.y - pc.y) : 1;
+            var sx = this.interpolate(pa.x, pb.x, gradient1) >> 0;
+            var ex = this.interpolate(pc.x, pd.x, gradient2) >> 0;
+            var z1: number = this.interpolate(pa.z, pb.z, gradient1);
+            var z2: number = this.interpolate(pc.z, pd.z, gradient2);
+            for (var x = sx; x < ex; x++) {
+                var gradient: number = (x - sx) / (ex - sx);
+                var z = this.interpolate(z1, z2, gradient);
+                this.drawPoint(new BABYLON.Vector3(x, y, z), color);
+            }
         }
 
         public drawTriangle(p1: BABYLON.Vector3, p2: BABYLON.Vector3, 
