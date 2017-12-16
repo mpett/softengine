@@ -1,3 +1,8 @@
+def print_between():
+    N = int(input())
+    for i in range(1, N+1):
+        print(i, sep='', end='', flush=True)
+
 def leap_year():
     year = int(input())
     if (year % 4 == 0):
@@ -50,4 +55,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    leap_year()
+    print_between()
