@@ -1,3 +1,16 @@
+def leap_year():
+    year = int(input())
+    if (year % 4 == 0):
+        if (year % 100 == 0):
+            if (year % 400 == 0):
+                print("True")
+            else:
+                print("False")
+        else:
+            print("True")
+    else:
+        print("False")
+
 def loops():
     N = int(input())
     for i in range(0, N):
@@ -37,4 +50,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    loops()
+    leap_year()
