@@ -2,7 +2,8 @@ def second_maximum():
     n = int(input())
     word = input()
     list_of_numbers = list(map(int, word.split(" ")))
-    list_of_numbers.remove(max(list_of_numbers))
+    list_of_numbers = [i for i in list_of_numbers 
+                        if i < max(list_of_numbers)]
     print(max(list_of_numbers))
 
 def comprehensions():
