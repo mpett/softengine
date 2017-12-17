@@ -1,3 +1,21 @@
+def second_maximum():
+    n = int(input())
+    word = input()
+    list_of_numbers = list(map(int, word.split(" ")))
+    list_of_numbers.remove(max(list_of_numbers))
+    print(max(list_of_numbers))
+
+def comprehensions():
+    x = int(input()) 
+    y = int(input())
+    z = int(input()) 
+    n = int(input())
+    
+    print([ [i, j, k] for i in range(x+1) 
+                        for j in range(y+1) 
+                            for k in range(z+1) 
+                                if ((i + j + k) != n)])
+
 def tuples():
     n = int(input())
     word = input()
@@ -89,4 +107,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    tuples()
+    second_maximum()
