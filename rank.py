@@ -1,3 +1,29 @@
+def nested_lists():
+    n = int(input())
+    students = []
+    for i in range(0,n):
+        name = input()
+        grade = float(input())
+        element = [name, grade]
+        students.append(element)
+    grade_key = lambda x : x[1]
+    student_key = lambda x : x[0]
+    students = [i for i in students 
+        if greater_than(i, 
+            min(students, key = grade_key))]
+    students = [i for i in students 
+        if not greater_than(i,
+            min(students, key = grade_key))]
+    students.sort(key = student_key)
+    for student in students:
+        print(student[0])
+
+def greater_than(first_element, second_element):
+    if (first_element[1] > second_element[1]):
+        return True
+    else:
+        return False
+
 def second_maximum():
     n = int(input())
     word = input()
@@ -108,4 +134,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    second_maximum()
+    nested_lists()
