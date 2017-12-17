@@ -1,3 +1,28 @@
+def lists():
+    N = int(input())
+    output_list = []
+    for i in range(0, N):
+        input_string = input()
+        inputs = input_string.split(" ")
+        if (inputs[0] == "insert"):
+            index = int(inputs[1])
+            value = int(inputs[2])
+            output_list.insert(index, value)
+        if (inputs[0] == "print"):
+            print (output_list)
+        if (inputs[0] == "remove"):
+            value = int(inputs[1])
+            output_list.remove(value)
+        if (inputs[0] == "append"):
+            value = int(inputs[1])
+            output_list.append(value)
+        if (inputs[0] == "sort"):
+            output_list.sort()
+        if (inputs[0] == "pop"):
+            output_list.pop()
+        if (inputs[0] == "reverse"):
+            output_list.reverse()
+
 def print_between():
     N = int(input())
     for i in range(1, N+1):
@@ -55,4 +80,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    print_between()
+    lists()
