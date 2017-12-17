@@ -1,3 +1,12 @@
+def tuples():
+    n = int(input())
+    word = input()
+    words = word.split(" ")
+    numbers = list(map(int, words))
+    number_tuple = tuple(numbers)
+    hashed_number_tuple = hash(number_tuple)
+    print(hashed_number_tuple)
+
 def lists():
     N = int(input())
     output_list = []
@@ -80,4 +89,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    lists()
+    tuples()
