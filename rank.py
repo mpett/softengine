@@ -1,3 +1,18 @@
+def find_a_string():
+    string = input()
+    substring = input()
+    found = True
+    discoveries = 0
+    discovery_index = 0
+    while(found):
+        resulting_index = string.find(substring, discovery_index)
+        if (resulting_index == -1):
+            found = False
+        else:
+            discoveries += 1
+            discovery_index += resulting_index + 1
+    print(discoveries)
+
 def mutate_string():
     original_word = input()
     mutation_input = input()
@@ -200,4 +215,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    mutate_string()
+    find_a_string()
