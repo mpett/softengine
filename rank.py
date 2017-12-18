@@ -1,3 +1,8 @@
+def swap_case():
+    input_string = input()
+    swapped = input_string.swapcase()
+    print(swapped)
+
 def finding_percentage():
     N = int(input())
     school = []
@@ -159,4 +164,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    finding_percentage()
+    swap_case()
