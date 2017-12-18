@@ -1,3 +1,28 @@
+def finding_percentage():
+    N = int(input())
+    school = []
+    for i in range(0, N):
+        student_dict = {}
+        input_words = input().split(" ")
+        student_dict['Name'] = input_words[0]
+        student_dict['first_mark'] = float(input_words[1])
+        student_dict['second_mark'] = float(input_words[2])
+        student_dict['third_mark'] = float(input_words[3])
+        school.append(student_dict)
+    lookup_student = input()
+    for i in range(0, N):
+        student_dict = school[i]
+        if (student_dict['Name'] == lookup_student):
+            print("%.2f" % grade_average(student_dict))
+
+def grade_average(student):
+    first_mark = student['first_mark']
+    second_mark = student['second_mark']
+    third_mark = student['third_mark']
+    grade_point_average = (first_mark 
+        + second_mark + third_mark) / 3
+    return grade_point_average
+
 def nested_lists():
     n = int(input())
     students = []
@@ -134,4 +159,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    nested_lists()
+    finding_percentage()
