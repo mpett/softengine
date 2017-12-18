@@ -1,3 +1,10 @@
+def whats_your_name():
+    first_name = input()
+    last_name = input()
+    result = "Hello " + first_name + " " + last_name + "!"
+    result += " You just delved into python."
+    print(result)
+
 def split_and_join():
     input_string = input()
     split_input = input_string.split(" ")
@@ -171,4 +178,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    split_and_join()
+    whats_your_name()
