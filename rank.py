@@ -1,3 +1,25 @@
+def mutate_string():
+    original_word = input()
+    mutation_input = input()
+    split = mutation_input.split(" ")
+    character = split[1]
+    index = int(split[0])
+    l = list(original_word)
+    l[index] = character
+    result = ''.join(l)
+    print(result)
+
+# Works fine on my own test, but gets runtime 
+# error on site.
+def mutations():
+    original_word = input()
+    mutation_input = input()
+    mutation_input = mutation_input.split(" ")
+    index = int(mutation_input[0])
+    character = mutation_input[1]
+    result = original_word[:index] + character + original_word[index:]
+    print(result)
+
 def whats_your_name():
     first_name = input()
     last_name = input()
@@ -178,4 +200,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    whats_your_name()
+    mutate_string()
