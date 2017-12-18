@@ -1,3 +1,10 @@
+def split_and_join():
+    input_string = input()
+    split_input = input_string.split(" ")
+    delimiter = "-"
+    result = delimiter.join(split_input)
+    print(result)
+
 def swap_case():
     input_string = input()
     swapped = input_string.swapcase()
@@ -164,4 +171,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    swap_case()
+    split_and_join()
