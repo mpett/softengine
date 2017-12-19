@@ -1,11 +1,17 @@
-import textwrap
-
-def main_method():
-    total = int(input())
-    second_format_number(total)
+# Please update me
+def capitalize():
+    word = input()
+    words = word.split(" ")
+    for index in range(len(words)):
+        part = words[index]
+        part = part.capitalize()
+        words[index] = part
+    word = str(words)
+    print(word)
 
 # Still getting runtime error here.
-def second_format_number(total):
+def second_format_number():
+    total = int(input())
     for number in range(1, total + 1):
         binary = str("{0:b}".format(number))
         hexadecimal = str(hex(number))
@@ -307,4 +313,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    main_method()
+    capitalize()
