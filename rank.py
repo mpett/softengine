@@ -1,3 +1,54 @@
+def any_validators():
+    input_string = input()
+    result = False
+    for i, c in enumerate(input_string):
+        if (c.isalnum()):
+            result = True
+    print (result)
+    result = False
+    for i, c in enumerate(input_string):
+        if (c.isalpha()):
+            result = True
+    print (result)
+    result = False
+    for i, c in enumerate(input_string):
+        if (c.isdigit()):
+            result = True
+    print (result)
+    result = False
+    for i, c in enumerate(input_string):
+        if (c.islower()):
+            result = True
+    print (result)
+    result = False
+    for i, c in enumerate(input_string):
+        if (c.isupper()):
+            result = True
+    print (result)
+
+def validators():
+    input_string = input()
+    if (input_string.isalnum()):
+        print("True")
+    else:
+        print("False")
+    if (input_string.isalpha()):
+        print("True")
+    else:
+        print("False")
+    if (input_string.isdigit()):
+        print("True")
+    else:
+        print("False")
+    if (input_string.islower()):
+        print("True")
+    else:
+        print("False")
+    if (input_string.isupper()):
+        print("True")
+    else:
+        print("False")
+
 def find_a_string():
     string = input()
     substring = input()
@@ -215,4 +266,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    find_a_string()
+    any_validators()
