@@ -1,3 +1,10 @@
+import textwrap
+
+def wrap():
+    string = input()
+    n = int(input())
+    print(textwrap.fill(string, n))
+
 def any_validators():
     input_string = input()
     result = False
@@ -266,4 +273,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    any_validators()
+    wrap()
