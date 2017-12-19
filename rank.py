@@ -1,5 +1,21 @@
 import textwrap
 
+def main_method():
+    total = int(input())
+    format_number(total)
+
+# Works fina locally, runtime error on site.
+def format_number(total):
+    for number in range(1, total + 1):
+        binary = str("{0:b}".format(number))
+        hexadecimal = str(hex(number))
+        hexadecimal = hexadecimal[2:]
+        hexadecimal = hexadecimal.upper()
+        octal = str(oct(number))
+        octal = octal[1:]
+        print(str(number) + " " + octal + " " +
+            hexadecimal + " " + binary)
+
 def wrap():
     string = input()
     n = int(input())
@@ -219,7 +235,8 @@ def lists():
 def print_between():
     N = int(input())
     for i in range(1, N+1):
-        print(i, sep='', end='', flush=True)
+        print("lol")
+        #print(i, sep='', end='', flush=True) <-- Gives me syntax error
 
 def leap_year():
     year = int(input())
@@ -273,4 +290,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    wrap()
+    main_method()
