@@ -2,7 +2,24 @@ import textwrap
 
 def main_method():
     total = int(input())
-    format_number(total)
+    second_format_number(total)
+
+# Still getting runtime error here.
+def second_format_number(total):
+    for number in range(1, total + 1):
+        binary = str("{0:b}".format(number))
+        hexadecimal = str(hex(number))
+        hexadecimal = del_char(hexadecimal, [0,1])
+        hexadecimal = hexadecimal.upper()
+        octal = str(oct(number))
+        octal = del_char(octal, [0])
+        print(str(number) + " " + octal + " " +
+            hexadecimal + " " + binary)
+
+def del_char(string, indexes):
+    return ''.join((char for idx, 
+                char in enumerate(string) 
+                        if idx not in indexes))
 
 # Works fina locally, runtime error on site.
 def format_number(total):
