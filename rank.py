@@ -1,3 +1,21 @@
+def systemic_difference():
+    M = int(input())
+    a = input()
+    lis = a.split()
+    intlis = list(map(int, lis))
+    intset = set(intlis)
+    N = int(input())
+    b = input()
+    b_lis = b.split()
+    b_intlis = list(map(int, b_lis))
+    b_intset = set(b_intlis)
+    union = intset.union(b_intset)
+    intersection = intset.intersection(b_intset)
+    result = union - intersection
+    sorted_result = sorted(result)
+    for value in sorted_result:
+        print(value)
+
 def set_average():
     N = int(input())
     word = input()
@@ -324,4 +342,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    set_average()
+    systemic_difference()
