@@ -1,3 +1,14 @@
+def set_average():
+    N = int(input())
+    word = input()
+    words = word.split(" ")
+    list_of_numbers = []
+    for word in words:
+        list_of_numbers.append(int(word))
+    number_set = set(list_of_numbers)
+    average = sum(number_set) / len(number_set)
+    print(average)
+
 # Please update me
 def capitalize():
     word = input()
@@ -12,7 +23,7 @@ def capitalize():
 # Still getting runtime error here.
 def second_format_number():
     total = int(input())
-    for number in range(1, total + 1):
+    for number in range(1, total + 1):  
         binary = str("{0:b}".format(number))
         hexadecimal = str(hex(number))
         hexadecimal = del_char(hexadecimal, [0,1])
@@ -313,4 +324,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    capitalize()
+    set_average()
