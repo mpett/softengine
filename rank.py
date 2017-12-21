@@ -1,3 +1,11 @@
+def set_add():
+    N = int(input())
+    stamps = set([])
+    for i in range(0,N):
+        word = input()
+        stamps.add(word)
+    print(len(stamps))
+
 def no_idea():
     word = input()
     words = word.split(" ")
@@ -366,4 +374,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    no_idea()
+    set_add()
