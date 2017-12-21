@@ -1,3 +1,27 @@
+def no_idea():
+    word = input()
+    words = word.split(" ")
+    n = int(words[0])
+    m = int(words[1])
+    a = input()
+    l = a.split()
+    l = list(map(int, l))
+    A = input()
+    Al = A.split()
+    Al = list(map(int, Al))
+    A = set(Al)
+    B = input()
+    Bl = B.split()
+    Bl = list(map(int, Bl))
+    B = set(Bl)
+    happiness = 0
+    for value in l:
+        if (A.__contains__(value)):
+            happiness += 1
+        elif (B.__contains__(value)):
+            happiness -= 1
+    print(happiness)
+
 def systemic_difference():
     M = int(input())
     a = input()
@@ -342,4 +366,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    systemic_difference()
+    no_idea()
