@@ -1,3 +1,26 @@
+def discard_remove():
+    n = int(input())
+    a = input()
+    N = int(input())
+    l = a.split()
+    l = list(map(int, l))
+    numbers = set(l)
+    for i in range(0, N):
+        words = input()
+        words = words.split(" ")
+        command = words[0]
+        number = 0
+        if (command != "pop"):
+            number = int(words[1])
+        if (command == "remove"):
+            numbers.remove(number)
+        elif (command == "pop"):
+            numbers.pop()
+        elif (command == "discard"):
+            numbers.discard(number)
+    number_sum = sum(numbers)
+    print(number_sum)
+
 def set_add():
     N = int(input())
     stamps = set([])
@@ -374,4 +397,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    set_add()
+    discard_remove()
