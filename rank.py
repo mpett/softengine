@@ -1,3 +1,23 @@
+from collections import Counter
+
+def collections_counter():
+    X = int(input())
+    word = input()
+    shoe_list = word.split()
+    shoe_list = list(map(int, shoe_list))
+    N = int(input())
+    sum = 0
+    for i in range(0, N):
+        word = input()
+        shoe_and_price = word.split()
+        shoe_and_price = list(map(int, shoe_and_price))
+        shoe = shoe_and_price[0]
+        price = shoe_and_price[1]
+        if (shoe_list.__contains__(shoe)):
+            sum += price
+            shoe_list.remove(shoe)
+    print(sum)
+
 def discard_remove():
     n = int(input())
     a = input()
@@ -397,4 +417,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    discard_remove()
+    collections_counter()
