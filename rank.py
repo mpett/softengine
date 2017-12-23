@@ -1,4 +1,22 @@
 from collections import Counter
+import sys
+
+def main():
+    simple_array_input()
+
+def simple_array_input():
+    n = int(input())
+    word = input()
+    array = word.split()
+    array = list(map(int, array))
+    result = simple_array_sum(n, array)
+    print(result)
+
+def simple_array_sum(n, array):
+    sum = 0
+    for i in range(0, n):
+        sum += array[i]
+    return sum
 
 def collections_counter():
     X = int(input())
@@ -417,4 +435,4 @@ def hello():
     print("Hello, World!")
 
 if __name__ == '__main__':
-    collections_counter()
+    main()
