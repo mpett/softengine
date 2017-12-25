@@ -1,9 +1,24 @@
 from collections import Counter
 from itertools import product
+from itertools import permutations
 import sys
 
 def main():
-    itertools_product()
+    itertools_permutations()
+
+# Wrong answer, probably not sorting correctly.
+def itertools_permutations():
+    word = input()
+    words = word.split(" ")
+    text_string = words[0]
+    k = int(words[1])
+    text_string = sorted(text_string)
+    r = list(permutations(text_string, k))
+    resulting_permutations = r
+    for element in resulting_permutations:
+        output = str(element[0])
+        output += str(element[1])
+        print(output)
 
 def itertools_product():
     words = input()
