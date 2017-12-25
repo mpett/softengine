@@ -2,9 +2,22 @@ from collections import Counter
 from itertools import product
 from itertools import permutations
 import sys
+import math
 
 def main():
-    itertools_permutations()
+    integers_come_in_all_sizes()
+
+# Wrong answer
+def integers_come_in_all_sizes():
+    a = int(input())
+    b = int(input())
+    c = int(input())
+    d = int(input())
+    a_power_b = int(math.pow(a, b))
+    c_power_d = int(math.pow(c, d))
+    resulting_sum = int(a_power_b + c_power_d)
+    resulting_sum = str(resulting_sum)
+    print(resulting_sum)
 
 # Wrong answer, probably not sorting correctly.
 def itertools_permutations():
