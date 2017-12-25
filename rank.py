@@ -1,8 +1,24 @@
 from collections import Counter
+from itertools import product
 import sys
 
 def main():
-    simple_array_input()
+    itertools_product()
+
+def itertools_product():
+    words = input()
+    numbers = words.split()
+    numbers = list(map(int, numbers))
+    A = numbers
+    words = input()
+    numbers = words.split()
+    numbers = list(map(int, numbers))
+    B = numbers
+    resulting_product = list(product(A, B))
+    output_string = ""
+    for element in resulting_product:
+        output_string += str(element) + " "
+    print(output_string)
 
 def simple_array_input():
     n = int(input())
@@ -420,7 +436,7 @@ def hello2():
     print("Hello, World.")
     print(input_string)
 
-def ifelse():
+def ifelse():   
     n = int(input())
     if (n % 2 != 0):
         print("Weird")
