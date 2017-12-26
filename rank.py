@@ -5,7 +5,21 @@ import sys
 import math
 
 def main():
-    integers_come_in_all_sizes()
+    making_anagrams()
+
+def making_anagrams():
+    first_word = input()
+    second_word = input()
+    first_set = set(list(first_word))
+    second_set = set(list(second_word))
+    intersection = first_set.intersection(second_set)
+    size_of_intersection = len(intersection)
+    size_of_first_word = len(first_word)
+    size_of_second_word = len(second_word)
+    difference = size_of_first_word - size_of_intersection
+    difference += size_of_second_word - size_of_intersection
+    characters_to_delete = difference
+    print(characters_to_delete)
 
 # Wrong answer
 def integers_come_in_all_sizes():
