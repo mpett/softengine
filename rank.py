@@ -7,12 +7,15 @@ import math
 def main():
     making_anagrams()
 
+# This one is probably looking for the shortest
+# possible anagram.
 def making_anagrams():
     first_word = input()
     second_word = input()
     first_set = set(list(first_word))
     second_set = set(list(second_word))
     intersection = first_set.intersection(second_set)
+    print(intersection)
     size_of_intersection = len(intersection)
     size_of_first_word = len(first_word)
     size_of_second_word = len(second_word)
